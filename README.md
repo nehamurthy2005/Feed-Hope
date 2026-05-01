@@ -1,4 +1,4 @@
-# 🍱 Waste Food Management System — MERN Stack
+# 🍱 Food Waste Management System — MERN Stack
 
 A full-stack web application to reduce food waste by connecting food donors with receivers using Google Maps.
 
