@@ -67,18 +67,35 @@ const Sidebar = () => {
 
       {/* Bottom: user card + logout */}
       <div style={S.bottom}>
-        {!collapsed && (
-          <div style={S.promoCard}>
-            <div style={{ fontSize: 28, marginBottom: 8 }}>🤲</div>
-            <p style={S.promoText}>Together we can end hunger.</p>
-            <Link to="/post-food" style={S.promoBtn}>Donate Now</Link>
-          </div>
-        )}
-        <button style={S.logoutBtn} onClick={handleLogout}>
-          <span style={{ fontSize: 16 }}>⬚</span>
-          {!collapsed && <span>Logout</span>}
-        </button>
+  {!collapsed && (
+    <div style={S.promoCard}>
+      <div style={{ fontSize: 28, marginBottom: 8 }}>🤲</div>
+      
+      <div style={S.promoCard}>
+        <div style={{ fontSize: 28, marginBottom: 8 }}>
+        </div>
+
+        <p style={S.promoText}>
+          {user?.role === 'receiver'
+            ? 'Find food donations near you.'
+            : 'Together we can end hunger.'}
+        </p>
+
+        <Link
+          to={user?.role === 'receiver' ? '/food' : '/post-food'}
+          style={S.promoBtn}
+        >
+          {user?.role === 'receiver' ? 'Receive Now' : 'Donate Now'}
+        </Link>
       </div>
+    </div>
+  )}
+
+  <button style={S.logoutBtn} onClick={handleLogout}>
+    <span style={{ fontSize: 16 }}>⬚</span>
+    {!collapsed && <span>Logout</span>}
+  </button>
+</div>
     </aside>
   );
 };

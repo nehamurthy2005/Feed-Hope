@@ -23,7 +23,7 @@ const Register = () => {
     <div style={S.page}>
       <div style={S.left}>
         <div style={S.leftInner}>
-          <div style={S.logo}>🤝 <span style={S.logoTxt}>No Hunger</span></div>
+          <div style={S.logo}>🤝 <span style={S.logoTxt}>Feed Hope</span></div>
           <h1 style={S.title}>Start making<br/>a difference.</h1>
           <p style={S.desc}>Create an account and join our community of food donors and receivers fighting hunger together.</p>
           <div style={S.roleCards}>

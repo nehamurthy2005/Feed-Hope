@@ -30,7 +30,7 @@ const Login = () => {
           <div style={S.logoRow}>
             <div style={S.logoIcon}>🤝</div>
             <div>
-              <div style={S.logoName}>No Hunger</div>
+              <div style={S.logoName}>Feed Hope</div>
               <div style={S.logoSub}>Food Donation App</div>
             </div>
           </div>

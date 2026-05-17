@@ -153,7 +153,7 @@ const styles = {
 
   hero: {
     backgroundImage: `
-      linear-gradient(rgba(46,125,50,0.7), rgba(115,171,118,0.7)),
+      linear-gradient(rgba(46, 125, 50, 0.54), rgba(115, 171, 118, 0.35)),
       url('https://images.unsplash.com/photo-1504674900247-0877df9cc836')
     `,
     backgroundSize: 'cover',
