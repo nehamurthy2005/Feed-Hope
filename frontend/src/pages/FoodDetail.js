@@ -181,7 +181,7 @@ const FoodDetail = () => {
           {/* ACTIONS CARD */}
           <div style={S.card}>
             <p style={S.sectionLabel}>Actions</p>
-            {isAvail && (
+            {isAvail && isReceiver && (
               <button style={S.btnPrimary} onClick={handleClaim} disabled={claiming}>
                 {claiming ? 'Claiming...' : '🧡 Claim This Food'}
               </button>
