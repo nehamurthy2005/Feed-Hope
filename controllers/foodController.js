@@ -26,7 +26,7 @@ const createFood = async (req, res) => {
       expiryDate,
       address,
       location: { lat: parseFloat(lat), lng: parseFloat(lng) },
-      image: req.file ? `/uploads/${req.file.filename}` : "",
+      image: req.file ? req.file.path : "",
     });
     notifyNearbyReceivers(food).catch(console.error);
     res.status(201).json(food);
