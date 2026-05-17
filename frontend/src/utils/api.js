@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "/api" });
+const API = axios.create({
+  baseURL: "https://feed-hope-backend.onrender.com/api",
+});
 
 // Always attach the latest token from localStorage
 API.interceptors.request.use((config) => {
