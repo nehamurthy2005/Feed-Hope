@@ -105,6 +105,7 @@ const FoodDetail = () => {
     (food.claimedBy === user?._id || food.claimedBy?._id === user?._id);
 
   const st = STATUS_STYLE[food.status] || STATUS_STYLE.available;
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <div style={S.page}>
@@ -115,7 +116,7 @@ const FoodDetail = () => {
         <span style={S.breadCurrent}>{food.title || 'roti curry'}</span>
       </div>
 
-      <div style={S.layout}>
+      <div style={{...S.layout, gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1fr) 340px', }}>
         {/* ── Left Content Column ── */}
         <div style={S.left}>
           {/* Main Hero Image Frame */}
@@ -253,22 +254,22 @@ const FoodDetail = () => {
 };
 
 const S = {
-  page: { fontFamily: "'DM Sans', sans-serif", padding: '24px', background: '#fafdfb', minHeight: '100vh' },
+  page: { fontFamily: "'DM Sans', sans-serif", padding: window.innerWidth <= 768 ? '14px' : '24px', background: '#fafdfb', minHeight: '100vh' },
   center: { padding: 80, textAlign: 'center', color: '#95b8a8' },
   breadcrumb: { display: 'flex', alignItems: 'center', gap: 6, marginBottom: 20 },
   breadLink: { fontSize: 13, color: '#52b788', cursor: 'pointer', fontWeight: 600 },
   breadSep: { color: '#ccc', fontSize: 13 },
   breadCurrent: { fontSize: 13, color: '#666' },
-  layout: { display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24, alignItems: 'start' },
-  left:  { display: 'flex', flexDirection: 'column', gap: 20 },
-  right: { display: 'flex', flexDirection: 'column', gap: 20 },
-  imgWrap: { position: 'relative', borderRadius: 16, overflow: 'hidden', height: 360, width: '100%', background: '#f5faf7' },
+  layout: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: 24, alignItems: 'start' },
+  left:  { display: 'flex', flexDirection: 'column', gap: 20 , minWidth: 0, },
+  right: { display: 'flex', flexDirection: 'column', gap: 20 , minWidth: 0, },
+  imgWrap: { position: 'relative', borderRadius: 16, overflow: 'hidden', height:  window.innerWidth <= 768 ? 240 : 360, width: '100%', background: '#f5faf7' },
   img: { width: '100%', height: '100%', objectFit: 'cover' },
   imgPlaceholder: { width: '100%', height: '100%', background: 'linear-gradient(135deg,#d8f3dc,#b7e4c7)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
   statusBadge: { position: 'absolute', top: 16, right: 16, fontSize: 12, fontWeight: 700, padding: '6px 14px', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 4 },
   
   // Sub Info Bar Style Layout Strip
-  subBarGrid: { display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 16, background: '#fff', borderRadius: 16, padding: '16px 24px', border: '0.5px solid #e8f5e9', boxShadow: '0 1px 8px rgba(45,106,79,0.04)' },
+  subBarGrid: { display: 'grid', gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr auto 1fr', gap: 16, background: '#fff', borderRadius: 16, padding: '16px 24px', border: '0.5px solid #e8f5e9', boxShadow: '0 1px 8px rgba(45,106,79,0.04)' },
   subBarItem: { display: 'flex', alignItems: 'center', gap: 12 },
   subLabel: { fontSize: 11, color: '#95b8a8', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.02em' },
   subVal: { fontSize: 14, color: '#1b4332', fontWeight: 700, marginTop: 1 },
@@ -281,7 +282,7 @@ const S = {
   desc: { fontSize: 14, color: '#555', lineHeight: 1.6, margin: '0 0 20px' },
   
   // Realized 2x2 Clean Grid Matrix Fixes
-  metaGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 },
+  metaGrid: { display: 'grid', gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr', gap: 16 },
   metaChipCard: { background: '#fafdff', border: '1px solid #f0f7f4', borderRadius: 12, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 14 },
   metaIcon: { fontSize: 20 },
   metaLabel: { fontSize: 11, color: '#95b8a8', fontWeight: 600, textTransform: 'uppercase' },
@@ -291,7 +292,7 @@ const S = {
   // Buttons Configuration Styles
   btnPrimary: { width: '100%', padding: '14px', background: '#1e4636', color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 12 },
   btnQR: { width: '100%', padding: '12px', background: '#2d6a4f', color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 8 },
-  btnWhatsapp: { width: '100%', padding: '12px', background: '#f5faf7', color: '#2d6a4f', border: '1px solid #e1efe6', borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  btnWhatsapp: { width: '100%', padding: '12px', background: '#f5faf7', color: '#2d6a4f', border: '1px solid #e1efe6', borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', },
   infoBox: { padding: '12px 16px', borderRadius: 12, fontWeight: 600, textAlign: 'center', marginBottom: 12, fontSize: 13 },
   claimedBox: { padding: '12px 16px', borderRadius: 12, background: '#e8f5e9', color: '#2d6a4f', fontWeight: 600, fontSize: 13, marginBottom: 12 },
   hint: { fontSize: 12, color: '#95b8a8', textAlign: 'center', lineHeight: 1.4, margin: '4px 0 12px' },
@@ -309,7 +310,7 @@ const S = {
   dirBtn: { fontSize: 13, color: '#52b788', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' },
   mapFooterAddress: { marginTop: 12 },
   footerAddrTitle: { fontSize: 14, fontWeight: 700, color: '#1b4332', marginBottom: 4 },
-  coordRow: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+  coordRow: { display: 'flex', alignItems:  window.innerWidth <= 768 ? 'flex-start' : 'center', justifyContent: 'space-between' , flexDirection: window.innerWidth <= 768 ? 'column' : 'row', gap: 8,},
   coord: { fontSize: 12, color: '#777' },
   copyBtn: { background: 'none', border: 'none', cursor: 'pointer', fontSize: 14 }
 };

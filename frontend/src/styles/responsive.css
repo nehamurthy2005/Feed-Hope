@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.responsive-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .mobile-column {
+    flex-direction: column !important;
+  }
+
+  .mobile-full {
+    width: 100% !important;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+}
