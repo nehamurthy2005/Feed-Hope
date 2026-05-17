@@ -2,8 +2,6 @@ import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import Sidebar from './Sidebar';
 
-const SIDEBAR_W = 220;
-
 const Topbar = () => {
   const { user } = useAuth();
   return (
@@ -32,7 +30,8 @@ const Topbar = () => {
   );
 };
 
-const AppLayout = ({ children }) => {
+// 1. Destructure the layout props coming from App.jsx
+const AppLayout = ({ children, collapsed, setCollapsed }) => {
   const { user } = useAuth();
 
   if (!user) {
@@ -41,8 +40,19 @@ const AppLayout = ({ children }) => {
 
   return (
     <div style={{ display: 'flex', fontFamily: "'DM Sans', sans-serif", background: '#f5faf7', minHeight: '100vh' }}>
-      <Sidebar />
-      <div style={{ marginLeft: SIDEBAR_W, flex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* 2. Pass control states straight down to the Sidebar */}
+      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      
+      {/* 3. Make this margin dynamic and add a matching transition speed */}
+      <div style={{ 
+        marginLeft: collapsed ? 72 : 220, 
+        flex: 1, 
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        transition: 'margin-left 0.25s ease' // Syncs beautifully with sidebar sliding
+      }}>
         <Topbar />
         <main style={{ flex: 1, padding: '24px 32px', overflowY: 'auto' }}>
           {children}

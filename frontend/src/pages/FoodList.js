@@ -223,7 +223,7 @@ const S = {
 
   hero: {
     backgroundImage: `
-      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      linear-gradient(rgba(76, 138, 90, 0.6), rgba(58, 122, 77, 0.22)),
       url('https://images.unsplash.com/photo-1498837167922-ddd27525d352')
     `,
     backgroundSize: "cover",
